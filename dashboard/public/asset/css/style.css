@@ -1,0 +1,41 @@
+:root {
+    --bs-gray-700: #4B5675;
+    --bg-color : #f4f0ef;
+    --bs-text-gray-900: #071437 !important;
+}
+
+*{
+    font-size: 14px;
+    font-family: Inter, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.menu-item {
+    color: var(--bs-gray-700) !important;
+    font-weight: 600;
+}
+
+.menu.active {
+    border-radius: 15px;
+    background-color: transparent;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .03);
+}
+
+.total-text {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.total-description {
+    font-weight: 500;
+
+}
+
+.block-info {
+    padding: 15px;
+    border: 1px solid;
+    border-radius: 10px;
+}
