@@ -41,25 +41,27 @@
     <div class="app-content flex-column-fluid ">
         <div class="app-container container-fluid ">
             <div class="d-flex gap-3">
-                <div class="col-6"><div class="row">
+                <div class="col-6">
+                    <div class="row">
                         <div class="col-4">
                             <div class="block-info p-4" style="background-color: #0e7732">
                                 <div class="card-header">
                                     <div
                                         class="fs-2hx fw-bold text-white  me-2 lh-1 ls-n2">{{$fetchDataAcc['countAccount']}}</div>
-                                    <span class="fw-bold fs-6 text-white opacity-75">Account</span>
+                                    <span class="fw-bold fs-6 text-white opacity-75">Tài khoản</span>
                                 </div>
                                 <div class="card-body pt-5">
                                     <div class="d-flex align-items-center flex-column mt-3 w-100">
                                         <div
                                             class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                            <span>{{$fetchDataAcc['countNewAccount'] ?? 0}} New Account (24h)</span>
+                                            <span>{{$fetchDataAcc['countNewAccount'] ?? 0}} Tài khoản mới (24h)</span>
                                             <span>{{$fetchDataAcc['countPercentAccount'] ?? 0}}%</span>
                                         </div>
 
                                         <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
                                             <div class="bg-white rounded h-8px" role="progressbar"
-                                                 style="width: {{$fetchDataAcc['countPercentAccount']}}%;" aria-valuenow="50"
+                                                 style="width: {{$fetchDataAcc['countPercentAccount']}}%;"
+                                                 aria-valuenow="50"
                                                  aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
@@ -72,19 +74,20 @@
                                 <div class="card-header">
                                     <div
                                         class="fs-2hx fw-bold text-white  me-2 lh-1 ls-n2">{{$fetchDataClan['countClan']}}</div>
-                                    <span class="fw-bold fs-6 text-white opacity-75">Clan</span>
+                                    <span class="fw-bold fs-6 text-white opacity-75">Bang</span>
                                 </div>
                                 <div class="card-body pt-5">
                                     <div class="d-flex align-items-center flex-column mt-3 w-100">
                                         <div
                                             class="d-flex justify-content-between fw-bold fs-6 text-white opacity-75 w-100 mt-auto mb-2">
-                                            <span>{{$fetchDataClan['countNewClan'] ?? 0}} New Clan (24h)</span>
+                                            <span>{{$fetchDataClan['countNewClan'] ?? 0}} Bang mới (24h)</span>
                                             <span>{{$fetchDataClan['countPercentClan'] ?? 0}}%</span>
                                         </div>
 
                                         <div class="h-8px mx-3 w-100 bg-white bg-opacity-50 rounded">
                                             <div class="bg-white rounded h-8px" role="progressbar"
-                                                 style="width: {{$fetchDataClan['countPercentClan']}}%;" aria-valuenow="50"
+                                                 style="width: {{$fetchDataClan['countPercentClan']}}%;"
+                                                 aria-valuenow="50"
                                                  aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
@@ -106,7 +109,7 @@
                                         <!--end::Info-->
 
                                         <!--begin::Subtitle-->
-                                        <span class="fw-bold fs-6 text-gray-500 opacity-75">Player</span>
+                                        <span class="fw-bold fs-6 text-gray-500 opacity-75">Người chơi</span>
                                         <!--end::Subtitle-->
                                     </div>
                                 </div>
@@ -179,64 +182,114 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-12 my-4">
+                            <div class="block-info p-4" style="background-color: white">
+                                <div class="card-header">
+                                    <div class="card-title d-flex flex-column">
+                                        <!--begin::Info-->
+                                        <div class="d-flex align-items-center">
+                                            <!--begin::Amount-->
+                                            <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Top cook</span>
+                                            <!--end::Amount-->
+                                        </div>
+                                        <!--end::Info-->
+                                    </div>
+                                </div>
+                                <div class="card-body align-items-center mt-3 d-flex">
+                                    <table class="col-8">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-1">Top</th>
+                                            <th class="col-2">Tên nhân vật</th>
+                                            <th class="col-3">Tên nhân vật</th>
+                                        </tr>
+                                        </thead>
+                                        @php
+                                            $stt = 1;
+                                        @endphp
+                                        @foreach($fetchDataTask['topCook'] as $task)
+                                            @php
+                                                $color = match ($task->gender) {
+                                                    0 => '#1B84FF',
+                                                    1 => '#17C653',
+                                                    2 => '#F8285A',
+                                                    default => '#999999',
+                                                }
+                                            @endphp
+                                            <tbody>
+                                            <tr>
+                                                <td>Top {{$stt}}</td>
+                                                <td style="color: {{$color}}">{{$task->name}}</td>
+                                                <td >{{$task->task_name}}</td>
+                                            </tr>
+                                            </tbody>
+                                            @php
+                                                $stt++;
+                                            @endphp
+                                        @endforeach
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="col-8">
+                    <div class="col-12">
                         <div class="block-info p-4" style="background-color: white">
                             <div class="card-header">
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Amount-->
-                                        <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Top Task</span>
+                                        <span class="fs-2hx fw-bold text-gray-900 me-2 lh-1 ls-n2">Top nhiệm vụ</span>
                                         <!--end::Amount-->
                                     </div>
                                     <!--end::Info-->
                                 </div>
                             </div>
-                            <div class="card-body d-flex flex-wrap align-items-center mt-3">
+                            <div class="card-body align-items-center mt-3 d-flex">
+                                <table class="col-8">
+                                    <thead>
+                                    <tr>
+                                        <th class="col-1">Top</th>
+                                        <th class="col-2">Tên nhân vật</th>
+                                        <th class="col-3">Tên nhân vật</th>
+                                    </tr>
+                                    </thead>
+                                    @php
+                                        $stt = 1;
+                                    @endphp
+                                    @foreach($fetchDataTask['topPlayer'] as $task)
+                                        @php
+                                            $color = match ($task->gender) {
+                                                0 => '#1B84FF',
+                                                1 => '#17C653',
+                                                2 => '#F8285A',
+                                                default => '#999999',
+                                            }
+                                        @endphp
+                                        <tbody>
+                                        <tr>
+                                            <td>Top {{$stt}}</td>
+                                            <td style="color: {{$color}}">{{$task->name}}</td>
+                                            <td >{{$task->task_name}}</td>
+                                        </tr>
+                                        </tbody>
+                                        @php
+                                            $stt++;
+                                        @endphp
+                                    @endforeach
+                                </table>
                                 <div class="col-4">
-                                    <div class="card-header">
-                                        <div class="fs-5 fw-bold text-primary me-2 lh-1 ls-n2">Trái đất</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center flex-columnw-100">
-                                            <div class="d-flex justify-content-between fw-bold fs-6 text-gray-500 opacity-75 w-100 mt-auto mb-2">
-                                                <div class="">
-                                                    name - so nv
-                                                </div>
-                                            </div>
+                                    <!--begin::Chart-->
+                                    <div class="d-flex flex-center ">
+                                        <div id="kt_card_widget_18_chart" style="min-width: 50%; min-height: 50%"
+                                             data-kt-size="70" data-kt-line="11">
+                                            <span></span>
+                                            <canvas height="70" width="70"></canvas>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="card-header">
-                                        <div class="fs-5 fw-bold text-success me-2 lh-1 ls-n2">Namek</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center flex-columnw-100">
-                                            <div class="d-flex justify-content-between fw-bold fs-6 text-gray-500 opacity-75 w-100 mt-auto mb-2">
-                                                <div class="">
-                                                    name - so nv
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="card-header">
-                                        <div class="fs-5 fw-bold text-danger me-2 lh-1 ls-n2">Xayda</div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center flex-columnw-100">
-                                            <div class="d-flex justify-content-between fw-bold fs-6 text-gray-500 opacity-75 w-100 mt-auto mb-2">
-                                                <div class="">
-                                                    name - so nv
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!--end::Chart-->
                                 </div>
                             </div>
                         </div>
@@ -269,6 +322,50 @@
                     cutout: '70%',
                     plugins: {
                         legend: {display: false}
+                    }
+                }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.getElementById('kt_card_widget_18_chart');
+            const canvas = container.querySelector('canvas');
+            const ctx = canvas.getContext('2d');
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        @foreach(config('task') as $taskName)
+                            "{{ $taskName }}",
+                        @endforeach
+                    ],
+                    datasets: [{
+                        data: [
+                            @foreach($fetchPercentTask['taskPercents'] as $percent)
+                                {{ $percent }},
+                            @endforeach
+                        ],
+                        backgroundColor: [
+                            '#1B84FF', '#17C653', '#F8285A', '#FFB300', '#FF6D00',
+                            '#F50057', '#651FFF', '#00BFA5', '#C51162', '#AA00FF',
+                            '#00C853', '#FFD600', '#FF3D00', '#2962FF', '#6200EA',
+                            '#00E5FF', '#76FF03', '#D500F9', '#00B0FF', '#FF1744',
+                            '#AEEA00', '#6200EA', '#00C853', '#FFD600', '#FF3D00',
+                            '#2962FF', '#6200EA', '#00E5FF', '#76FF03', '#D500F9',
+                            '#00B0FF', '#FF1744', '#AEEA00', '#6200EA', '#00C853'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '70%', // Phần lõm giữa
+                    plugins: {
+                        legend: {
+                            display: false // <- Tắt chú thích
+                        },
+                        tooltip: {
+                            enabled: true // Tooltips vẫn bật khi hover
+                        }
                     }
                 }
             });
